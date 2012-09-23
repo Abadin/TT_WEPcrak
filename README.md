@@ -14,4 +14,16 @@ You can also do an:
                     apt-get install aireplay-ng
                     apt-get install aircrack-ng
                     
-This you can do on a PROXIS
+This you can do on a PROSIX system.
+
+Now, open a terminal and do write nano /usr/sbin/"name of program"
+
+Then you copy the script in to the nano you've made, save and exit
+
+Make a folder called crackcap in your root.
+
+Last thing is to write: chmod +x /usr/sbin/"name of program"
+
+type "name of program" and follow the instructions.
+
+Enjoy :)
